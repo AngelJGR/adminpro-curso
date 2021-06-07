@@ -3,15 +3,21 @@
     <div class="card">
       <div class="card-body">
 
-        <h4 class="card-title">Striped Progress bar {{ getProgress }}</h4>
+        <h4 class="card-title">Striped Progress bar</h4>
         <div class="progress m-t-20">
-          <div 
-            class="progress-bar bg-info progress-bar-striped active" 
+          <div class="progress-bar bg-info progress-bar-striped active" 
+            [style.width]="getProgress1"
             style="height:10px;"
-            [style.width]="getProgress"
-            role="progressbar"
-          >
-            <span class="sr-only">{{ getProgress }} Complete (success)</span>
+            role="progressbar">
+            <span class="sr-only">{{ getProgress1 }} Complete (success)</span>
+          </div>
+        </div>
+        <div class="progress m-t-20">
+          <div class="progress-bar bg-info progress-bar-striped active" 
+            [style.width]="getProgress2"
+            style="height:10px;"
+            role="progressbar">
+            <span class="sr-only">{{ getProgress2 }} Complete (success)</span>
           </div>
         </div>
       </div>
@@ -25,19 +31,7 @@
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        <div class="input-group">
-          <span class="input-group-btn">
-            <button class="btn btn-danger" type="button" (click)="changeValueProgress(-5)">
-              <i class="fa fa-minus"></i>
-            </button>
-          </span>
-          <input type="text" class="form-control" placeholder="Product name" [(ngModel)]="progress">
-          <span class="input-group-btn">
-            <button class="btn btn-success" type="button" (click)="changeValueProgress(5)">
-              <i class="fa fa-plus"></i>
-            </button>
-          </span>
-       </div>
+        <app-incrementador [valor]="progress1" (newValue)="progress1 = $event" [btnClass]="'btn-success'"></app-incrementador>
       </div>
     </div>
   </div>
@@ -45,7 +39,7 @@
   <div class="col-6">
     <div class="card">
       <div class="card-body">
-        2
+        <app-incrementador [valor]="progress2" (newValue)="progress2 = $event"></app-incrementador>
       </div>
     </div>
   </div>
