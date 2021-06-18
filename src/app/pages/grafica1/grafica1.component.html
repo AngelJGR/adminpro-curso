@@ -1,1 +1,21 @@
-<p>grafica1 works!</p>
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header">
+        <strong>Sales</strong>
+      </div>
+      <div class="card-body">
+
+        <div style="display: block">
+          <canvas baseChart
+            [data]="doughnutChartData"
+            [labels]="doughnutChartLabels"
+            [colors]="colors"
+            [chartType]="doughnutChartType">
+          </canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
