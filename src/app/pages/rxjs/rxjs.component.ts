@@ -11,8 +11,18 @@ import { retry } from 'rxjs/operators';
 export class RxjsComponent {
 
   constructor() {
-    const obs$ = new Observable(observer => {
-      let i = 0;
+    
+    this.returnObservable().pipe(
+      retry(1)
+    ).subscribe(
+      valor => console.log('Subs:', valor), 
+      error => console.warn('Error', error),
+      () => console.info('Finalizado'));
+  }
+
+  returnObservable(): Observable<number> {
+    let i = 0;
+    return new Observable<number>(observer => {
       const interval = setInterval(() => {
         i++
         if (i === 10) {
@@ -20,19 +30,17 @@ export class RxjsComponent {
           observer.complete();
         }
         if (i === 3) {
-          console.log('Llego a 3');
+          console.log('es 3');
           observer.error('I llegó a 3');
+        }
+        if (i === 7) {
+          console.log('es 7');
+          observer.error('I llegó a 7');
         }
         observer.next(i);
       }, 1000);
     });
 
-    obs$.pipe(
-      retry(2)
-    ).subscribe(
-      valor => console.log('Subs:', valor), 
-      error => console.warn('Error', error),
-      () => console.info('Finalizado'));
   }
 
 }
