@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
+import { retry } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
@@ -19,13 +20,16 @@ export class RxjsComponent {
           observer.complete();
         }
         if (i === 3) {
+          console.log('Llego a 3');
           observer.error('I llegó a 3');
         }
         observer.next(i);
       }, 1000);
     });
 
-    obs$.subscribe(
+    obs$.pipe(
+      retry(2)
+    ).subscribe(
       valor => console.log('Subs:', valor), 
       error => console.warn('Error', error),
       () => console.info('Finalizado'));
