@@ -13,6 +13,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromisesComponent } from './promises/promises.component';
+import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 
@@ -24,6 +25,7 @@ import { PromisesComponent } from './promises/promises.component';
     PagesComponent,
     AccountSettingsComponent,
     PromisesComponent,
+    RxjsComponent,
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,7 @@ import { PromisesComponent } from './promises/promises.component';
     PagesComponent,
     AccountSettingsComponent,
     PromisesComponent,
+    RxjsComponent
   ]
 })
 export class PagesModule { }
