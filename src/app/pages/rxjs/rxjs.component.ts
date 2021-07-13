@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rxjs',
@@ -6,11 +7,28 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent {
 
-  constructor() { }
+  constructor() {
+    const obs$ = new Observable(observer => {
+      let i = 0;
+      const interval = setInterval(() => {
+        i++
+        if (i === 10) {
+          clearInterval(interval);
+          observer.complete();
+        }
+        if (i === 3) {
+          observer.error('I llegó a 3');
+        }
+        observer.next(i);
+      }, 1000);
+    });
 
-  ngOnInit(): void {
+    obs$.subscribe(
+      valor => console.log('Subs:', valor), 
+      error => console.warn('Error', error),
+      () => console.info('Finalizado'));
   }
 
 }
