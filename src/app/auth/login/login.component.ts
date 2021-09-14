@@ -61,17 +61,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  startApp = () => {
-    gapi.load('auth2', () => {
-      // Retrieve the singleton for the GoogleAuth library and set up the client.
-      this.auth2 = gapi.auth2.init({
-        client_id: '310835282131-nsej5tv4h366l0u8sslk1ab7o3n45103.apps.googleusercontent.com',
-        cookiepolicy: 'single_host_origin',
-        // Request scopes in addition to 'profile' and 'email'
-        //scope: 'additional_scope'
-      });
-      this.attachSignin(document.getElementById('my-signin2'));
-    });
+  startApp = async () => {
+    await this.userService.googleInit();
+    this.auth2 = this.userService.auth2;
+    this.attachSignin(document.getElementById('my-signin2'));
   };
 
   attachSignin = (element) => {
