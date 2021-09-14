@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { LoginFormInterface } from '../interfaces/login-form.interface';
 import { RegisterFormInterface } from '../interfaces/register-form.interface';
+
+declare var gapi: any;
 
 const BASE_URL = environment.base_url;
 
@@ -13,7 +16,24 @@ const BASE_URL = environment.base_url;
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  public auth2: any;
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private ngZone: NgZone
+  ) {
+    this.googleInit();
+  }
+
+  googleInit() {
+    gapi.load('auth2', () => {
+      this.auth2 = gapi.auth2.init({
+        client_id: '310835282131-nsej5tv4h366l0u8sslk1ab7o3n45103.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+      });
+    });
+  }
 
   validateToken (): Observable<boolean> {
     const token = localStorage.getItem('token') || '';
@@ -48,5 +68,14 @@ export class UserService {
       .pipe(
         tap((res: any) => localStorage.setItem('token', res.token))
       );
+  }
+
+  logout () {
+    localStorage.removeItem('token');
+    this.auth2.signOut().then(() => {
+      this.ngZone.run(() => {
+        this.router.navigateByUrl('/login');
+      });
+    });
   }
 }
