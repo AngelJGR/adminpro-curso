@@ -27,4 +27,11 @@ export class UserService {
         tap((res: any) => localStorage.setItem('token', res.token))
       );
   }
+
+  loginGoogle(token: string) {
+    return this.http.post(`${BASE_URL}/login/google`, { token })
+      .pipe(
+        tap((res: any) => localStorage.setItem('token', res.token))
+      );
+  }
 }
