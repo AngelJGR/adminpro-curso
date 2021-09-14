@@ -36,12 +36,13 @@ export class LoginComponent implements OnInit {
 
   login = () => {
     this.userService.login(this.loginForm.value)
-      .subscribe(res => {
+      .subscribe(() => {
         if ( this.loginForm.get('remember').value ) {
           localStorage.setItem('email', this.loginForm.get('email').value);
         } else {
           localStorage.removeItem('email');
         }
+        this.router.navigateByUrl('/');
       }, (err) => {
         Swal.fire('Error', err.error.msg, 'error')
       });
@@ -76,10 +77,9 @@ export class LoginComponent implements OnInit {
     this.auth2.attachClickHandler(element, {},
         (googleUser) => {
           const id_token = googleUser.getAuthResponse().id_token;
-          this.userService.loginGoogle(id_token).subscribe(() => {
-          }, error => console.log(error));
+          this.userService.loginGoogle(id_token).subscribe(() => this.router.navigateByUrl('/'));
         }, (error) => {
-          alert(JSON.stringify(error, undefined, 2));
+          // alert(JSON.stringify(error, undefined, 2));
         });
   }
 
