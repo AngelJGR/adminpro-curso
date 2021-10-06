@@ -28,10 +28,9 @@ export class FileUploadService {
         body: formData
       });
 
-      console.log(response.url);
       const data = await response.json();
-      console.log(data);
-      return 'nombre de la imagen';
+      
+      return data.ok ? data.filename : false;
 
     } catch (error) {
       console.log(error);

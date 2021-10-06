@@ -14,7 +14,8 @@ export class ProfileComponent implements OnInit {
 
   public profileForm: FormGroup;
   public user: User;
-  public image: File
+  public image: File;
+  public imgTemp: string | ArrayBuffer = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,11 +42,19 @@ export class ProfileComponent implements OnInit {
 
   changeImage(file: File) {
     this.image = file;
+    if (!file) {return this.imgTemp = '';}
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      this.imgTemp = reader.result;
+    }
   }
 
   uploadImage() {
     this.fileUploadService.updateImage(this.image, 'users', this.user.uid).then(img => {
-      console.log(img);
+      this.user.img = img;
     })
   }
 
