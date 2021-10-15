@@ -6,6 +6,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
+import { UsersComponent } from './maintenances/users/users.component';
 import { PagesComponent } from './pages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -25,6 +26,9 @@ const routes: Routes = [
       { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJs' } },
       { path: 'profile', component: ProfileComponent, data: { title: 'Profile User' } },
+
+      //Maintenances
+      { path: 'users', component: UsersComponent, data: { title: 'Application users' } },
     ]
   },
 ];

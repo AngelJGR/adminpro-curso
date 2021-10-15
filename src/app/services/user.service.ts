@@ -36,6 +36,14 @@ export class UserService {
     return this.user.uid || '';
   }
 
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
+
   googleInit(): Promise<void> {
     return new Promise(resolve => {
       gapi.load('auth2', () => {
@@ -105,5 +113,9 @@ export class UserService {
         this.router.navigateByUrl('/login');
       });
     });
+  }
+
+  getUsers (from: number = 0) {
+    return this.http.get(`${BASE_URL}/users?from=${from}`, this.headers);
   }
 }
