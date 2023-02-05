@@ -4,8 +4,10 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+
 import { LoginFormInterface } from '../interfaces/login-form.interface';
 import { RegisterFormInterface } from '../interfaces/register-form.interface';
+import { GetUser } from '../interfaces/user.interface';
 import { User } from '../models/user.model';
 
 declare var gapi: any;
@@ -57,11 +59,7 @@ export class UserService {
   }
 
   validateToken (): Observable<boolean> {
-    return this.http.get(`${BASE_URL}/login/renew`, {
-      headers: {
-        'x-token': this.token
-      }
-    })
+    return this.http.get(`${BASE_URL}/login/renew`, this.headers)
     .pipe(
       map((res: any) => {
         const { email, google, name, role, uid, img = '' } = res.user;
@@ -85,11 +83,7 @@ export class UserService {
       ...data,
       role: this.user.role
     }
-    return this.http.put(`${BASE_URL}/users/${this.uid}`, data, {
-      headers: {
-        'x-token': this.token
-      }
-    });
+    return this.http.put(`${BASE_URL}/users/${this.uid}`, data, this.headers);
   }
 
   login(formData: LoginFormInterface) {
@@ -116,6 +110,7 @@ export class UserService {
   }
 
   getUsers (from: number = 0) {
-    return this.http.get(`${BASE_URL}/users?from=${from}`, this.headers);
+    return this.http.get<GetUser>(`${BASE_URL}/users?from=${from}`, this.headers);
   }
 }
+

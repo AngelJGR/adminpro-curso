@@ -10,18 +10,18 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UsersComponent implements OnInit {
 
-  public users: Array<User>;
-  public totalUsers: number;
+  public users: Array<User> = [];
+  public totalUsers: number = 0;
 
   constructor(
     private userService: UserService
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((res: any) => {
-      console.log(res);
-      this.users = res.users;
-      this.totalUsers = res.total;
+    this.userService.getUsers()
+    .subscribe(({users, totalUsers}) => {
+      this.users = users;
+      this.totalUsers = totalUsers;
     });
   }
 
