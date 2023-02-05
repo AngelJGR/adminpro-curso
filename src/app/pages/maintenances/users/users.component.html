@@ -38,7 +38,7 @@
             </thead>
             <tbody>
               <tr *ngFor="let user of users">
-                <td>Tantas earum numeris</td>
+                <td>numeris</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.role }}</td>
@@ -55,8 +55,8 @@
             </tbody>
           </table>
         </div>
-        <button class="btn btn-secondary">Prev</button>&nbsp;
-        <button class="btn btn-secondary">Next</button>
+        <button (click)="changePage(-5)" class="btn btn-secondary">Prev</button>&nbsp;
+        <button (click)="changePage(5)" class="btn btn-secondary">Next</button>
       </div>
     </div>
   </div>  
