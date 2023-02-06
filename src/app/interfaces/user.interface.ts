@@ -1,3 +1,4 @@
+import { User as UserModel } from '../models/user.model'
 export interface User {
   name: string,
   email: string,
@@ -9,5 +10,5 @@ export interface User {
 
 export interface GetUser {
   totalUsers: number,
-  users: User[]
+  users: UserModel[]
 }

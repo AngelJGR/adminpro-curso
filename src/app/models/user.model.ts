@@ -13,11 +13,10 @@ export class User {
     public role?: string,
   ) {}
 
-  get getImg(): string {
+  get imageUrl(): string {
     if (this.img) {
-      if (this.img.includes('https')) {
+      if (this.img.includes('https'))
         return this.img;
-      }
       return `${api_url}/upload/users/${this.img}`;
     }
     return `${api_url}/upload/users/no-image`;

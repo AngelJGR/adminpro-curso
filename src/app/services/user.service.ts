@@ -110,7 +110,14 @@ export class UserService {
   }
 
   getUsers (from: number = 0) {
-    return this.http.get<GetUser>(`${BASE_URL}/users?from=${from}`, this.headers);
+    return this.http.get<GetUser>(`${BASE_URL}/users?from=${from}`, this.headers)
+      .pipe(
+        map(resp => ({
+            users: resp.users.map(u => new User(u.name, u.email, '', u.google, u.img, u.uid, u.role)),
+            totalUsers: resp.totalUsers
+          }
+        ))
+      );
   }
 }
 
