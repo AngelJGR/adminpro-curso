@@ -119,5 +119,9 @@ export class UserService {
         ))
       );
   }
+
+  deleteUser(user: User) {
+    return this.http.delete(`${BASE_URL}/users/${user.uid}`, this.headers)
+  }
 }
 
