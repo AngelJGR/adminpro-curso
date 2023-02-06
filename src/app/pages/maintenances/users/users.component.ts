@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/user.interface';
+import { SearchesService } from 'src/app/services/searches.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class UsersComponent implements OnInit {
   public loading: boolean = true
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private searchesService: SearchesService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,13 @@ export class UsersComponent implements OnInit {
       this.from -= value
     
     this.getUser()
+  }
+
+  search(value:string) {
+    this.searchesService.search('users', value)
+      .subscribe(res => {
+        this.users = res
+      })
   }
 
 }

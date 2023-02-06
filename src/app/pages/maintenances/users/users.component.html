@@ -2,7 +2,13 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <input type="text" class="form-control" placeholder="Find User"/>
+        <input 
+          type="text"
+          class="form-control"
+          placeholder="Find User"
+          (keyup)="search(txtSearch.value)"
+          #txtSearch
+        />
       </div>
     </div>
   </div>
