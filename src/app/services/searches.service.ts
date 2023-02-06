@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user.model';
 
 const BASE_URL = environment.base_url;
 
@@ -30,7 +31,14 @@ export class SearchesService {
   search (type: 'hospitals'|'doctors'|'users', search: string) {
     return this.http.get<any[]>(`${BASE_URL}/search/collection/${type}/${search}`, this.headers)
       .pipe(
-        map((res: any) => res.result)
+        map((res: any) => {
+          switch (type) {
+            case 'users':
+              return res.result.map(u => new User(u.name, u.email, '', u.google, u.img, u.uid, u.role))
+            default:
+              return [];
+          }
+        })
       )
   }
 }

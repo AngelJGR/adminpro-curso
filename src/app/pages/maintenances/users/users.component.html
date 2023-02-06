@@ -29,7 +29,7 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title">Users</h4>
-        <h6 class="card-subtitle"><strong>{{ totalUsers}}</strong> users registered in the app {{totalUsers}}</h6>
+        <h6 class="card-subtitle"><strong>{{ totalUsers }}</strong> users registered in the app</h6>
         <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
@@ -63,8 +63,10 @@
             </tbody>
           </table>
         </div>
-        <button (click)="changePage(-5)" class="btn btn-secondary">Prev</button>&nbsp;
-        <button (click)="changePage(5)" class="btn btn-secondary">Next</button>
+        <div *ngIf="txtSearch.value.length === 0">
+          <button (click)="changePage(-5)" class="btn btn-secondary">Prev</button>&nbsp;
+          <button (click)="changePage(5)" class="btn btn-secondary">Next</button>
+        </div>
       </div>
     </div>
   </div>  
