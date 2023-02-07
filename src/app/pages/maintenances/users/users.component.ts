@@ -87,7 +87,7 @@ export class UsersComponent implements OnInit {
   }
 
   openModal(user: UserModel) {
-    this.modalImageService.openModal()
+    this.modalImageService.openModal('users', user.uid, user.img)
   }
 
 }
