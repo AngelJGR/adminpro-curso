@@ -5,6 +5,7 @@ import { User } from 'src/app/interfaces/user.interface';
 import { User as UserModel } from 'src/app/models/user.model'
 import { SearchesService } from 'src/app/services/searches.service';
 import { UserService } from 'src/app/services/user.service';
+import { ModalImageService } from 'src/app/services/modal-image.service';
 
 @Component({
   selector: 'app-users',
@@ -21,7 +22,8 @@ export class UsersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private searchesService: SearchesService
+    private searchesService: SearchesService,
+    private modalImageService: ModalImageService
   ) { }
 
   ngOnInit(): void {
@@ -82,6 +84,10 @@ export class UsersComponent implements OnInit {
             this.getUser()
           })
     })
+  }
+
+  openModal(user: UserModel) {
+    this.modalImageService.openModal()
   }
 
 }
