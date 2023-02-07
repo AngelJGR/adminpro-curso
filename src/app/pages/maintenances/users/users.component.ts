@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 
 import { User } from 'src/app/interfaces/user.interface';
+import { User as UserModel } from 'src/app/models/user.model'
 import { SearchesService } from 'src/app/services/searches.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -52,6 +53,11 @@ export class UsersComponent implements OnInit {
       return this.getUser()
     this.searchesService.search('users', value)
       .subscribe(res => this.users = res)
+  }
+
+  changeRole(user: UserModel) {
+    this.userService.updateUser(user)
+      .subscribe()
   }
 
   deleteUser (user) {

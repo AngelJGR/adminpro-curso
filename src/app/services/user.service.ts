@@ -123,5 +123,9 @@ export class UserService {
   deleteUser(user: User) {
     return this.http.delete(`${BASE_URL}/users/${user.uid}`, this.headers)
   }
+
+  updateUser(user: User){
+    return this.http.put(`${BASE_URL}/users/${user.uid}`, user, this.headers);
+  }
 }
 
