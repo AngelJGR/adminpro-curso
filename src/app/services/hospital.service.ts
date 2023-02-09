@@ -29,4 +29,16 @@ export class HospitalService {
     return this.http.get(`${BASE_URL}/hospitals?from=${from}`, this.headers)
       .pipe(map((r: {ok: boolean, hospitals: Hospital[]}) => r.hospitals))
   }
+
+  createHospital (name: string) {
+    return this.http.post(`${BASE_URL}/hospitals`, { name }, this.headers)
+  }
+
+  updateHospital (name: string, uid: string) {
+    return this.http.put(`${BASE_URL}/hospitals/${uid}`, { name }, this.headers)
+  }
+
+  deleteHospital (uid: string) {
+    return this.http.delete(`${BASE_URL}/hospitals/${uid}`, this.headers)
+  }
 }
