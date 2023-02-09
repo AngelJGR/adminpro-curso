@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { ComponentsModule } from '../components/components.module';
+import { PipesModule } from '../pipes/pipes.module';
 
 import { ProgressComponent } from './progress/progress.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
@@ -42,6 +43,7 @@ import { DoctorsComponent } from './maintenances/doctors/doctors.component';
     SharedModule,
     AppRoutingModule,
     ComponentsModule,
+    PipesModule
   ],
   exports: [
     DashboardComponent,
