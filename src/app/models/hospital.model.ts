@@ -6,7 +6,7 @@ interface _HospitalUser{
 
 export class Hospital {
 
-    public nombre: string;
+    public name: string;
     public _id?: string;
     public img?: string;
     public user?: any;

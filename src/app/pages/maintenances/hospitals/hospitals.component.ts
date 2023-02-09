@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Hospital } from 'src/app/models/hospital.model';
 import { HospitalService } from 'src/app/services/hospital.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-hospitals',
@@ -28,6 +29,19 @@ export class HospitalsComponent implements OnInit {
         console.log(hospitals)
         this.loading = false
         this.hospitals = hospitals
+      })
+  }
+
+  updateHospital(hospital: Hospital) {
+    this.hospitalService.updateHospital(hospital.name, hospital._id)
+      .subscribe(() => Swal.fire('Updated', hospital.name, 'success'))
+  }
+
+  deleteHospital(hospital: Hospital) {
+    this.hospitalService.deleteHospital(hospital._id)
+      .subscribe(() => {
+        this.getHospitals()
+        Swal.fire('deleted', hospital.name, 'success')
       })
   }
 
