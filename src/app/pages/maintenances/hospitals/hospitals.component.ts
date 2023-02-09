@@ -45,4 +45,21 @@ export class HospitalsComponent implements OnInit {
       })
   }
 
+  async openCreateModal() {
+    const { value } = await Swal.fire<string>({
+      input: 'text',
+      title: 'Create hospital',
+      text: 'Enter the new hospital name',
+      inputPlaceholder: 'Hospital name',
+      showCancelButton: true,
+    })
+
+    if (value) {
+      this.hospitalService.createHospital(value)
+        .subscribe((res: {ok: boolean, hospital: Hospital}) =>  {
+          this.hospitals.push(res.hospital)
+      })
+    }
+  }
+
 }
