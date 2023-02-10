@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
+
 import { Hospital } from 'src/app/models/hospital.model';
 import { HospitalService } from 'src/app/services/hospital.service';
-import Swal from 'sweetalert2';
+import { ModalImageService } from 'src/app/services/modal-image.service';
 
 @Component({
   selector: 'app-hospitals',
@@ -13,12 +16,15 @@ export class HospitalsComponent implements OnInit {
 
   public hospitals: Hospital[] = []
   public loading: boolean = true
+  public imgSubscriber: Subscription
 
   constructor(
-    private hospitalService: HospitalService
+    private hospitalService: HospitalService,
+    private modalImageService: ModalImageService
   ) { }
 
   ngOnInit(): void {
+    this.imgSubscriber = this.modalImageService.savedImageEvent.subscribe(() => this.getHospitals())
     this.getHospitals()
   }
 
@@ -26,7 +32,6 @@ export class HospitalsComponent implements OnInit {
     this.loading = true
     this.hospitalService.getHospitals()
       .subscribe(hospitals => {
-        console.log(hospitals)
         this.loading = false
         this.hospitals = hospitals
       })
@@ -60,6 +65,10 @@ export class HospitalsComponent implements OnInit {
           this.hospitals.push(res.hospital)
       })
     }
+  }
+
+  openImgModal(hospital: Hospital) {
+    this.modalImageService.openModal('hospitals', hospital._id, hospital.img)
   }
 
 }

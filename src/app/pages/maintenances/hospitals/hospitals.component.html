@@ -52,7 +52,12 @@
               <tbody>
                 <tr *ngFor="let hospital of hospitals">
                   <td>
-                    <img [alt]="hospital.name" [src]="hospital.img | image:'hospitals'" class="avatar cursor" >
+                    <img 
+                      [alt]="hospital.name"
+                      [src]="hospital.img | image:'hospitals'"
+                      class="avatar cursor"
+                      (click)="openImgModal(hospital)"
+                    >
                   </td>
                   <td>
                     <input type="text" class="form-control" placeholder="Hospital name" [(ngModel)]="hospital.name"/>

@@ -43,7 +43,6 @@ export class ModalImageComponent implements OnInit {
   uploadImage() {
     const type = this.modalImageService.type
     const id = this.modalImageService.uid
-    console.log(this.image)
     this.fileUploadService.updateImage(this.image, type, id).then((img) => {
       Swal.fire('Save', 'The Image was uploaded successfully', 'success');
       this.modalImageService.savedImageEvent.emit(img)
