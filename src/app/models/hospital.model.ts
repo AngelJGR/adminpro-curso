@@ -9,7 +9,7 @@ export class Hospital {
     public name: string;
     public _id?: string;
     public img?: string;
-    public user?: any;
+    public user?: _HospitalUser;
 
     constructor(
   ) { }
