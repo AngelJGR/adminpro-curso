@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import { Hospital } from 'src/app/models/hospital.model';
 import { HospitalService } from 'src/app/services/hospital.service';
 import { ModalImageService } from 'src/app/services/modal-image.service';
+import { SearchesService } from 'src/app/services/searches.service';
 
 @Component({
   selector: 'app-hospitals',
@@ -23,7 +24,9 @@ export class HospitalsComponent implements OnInit {
 
   constructor(
     private hospitalService: HospitalService,
-    private modalImageService: ModalImageService
+    private modalImageService: ModalImageService,
+    private searchesService: SearchesService
+
   ) { }
 
   ngOnInit(): void {
@@ -52,6 +55,13 @@ export class HospitalsComponent implements OnInit {
         this.getHospitals()
         Swal.fire('deleted', hospital.name, 'success')
       })
+  }
+
+  search(value:string) {
+    if (!value)
+      return this.getHospitals()
+    this.searchesService.search('hospitals', value)
+      .subscribe((res: Hospital[]) => this.hospitals = res)
   }
 
   async openCreateModal() {

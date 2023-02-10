@@ -35,6 +35,8 @@ export class SearchesService {
           switch (type) {
             case 'users':
               return res.result.map(u => new User(u.name, u.email, '', u.google, u.img, u.uid, u.role))
+            case 'hospitals':
+              return res.result
             default:
               return [];
           }
