@@ -75,9 +75,7 @@ export class HospitalsComponent implements OnInit {
 
     if (value) {
       this.hospitalService.createHospital(value)
-        .subscribe((res: {ok: boolean, hospital: Hospital}) =>  {
-          this.hospitals.push(res.hospital)
-      })
+        .subscribe((res: {ok: boolean, hospital: Hospital}) => this.getHospitals())
     }
   }
 
