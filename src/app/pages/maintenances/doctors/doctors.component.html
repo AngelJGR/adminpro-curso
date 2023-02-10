@@ -12,7 +12,7 @@
     </div>
   </div>
   
-  <div class="row animated fadeIn fast">
+  <div class="row animated fadeIn fast" *ngIf="loading">
     <div class="col-12">
       <div class="alert alert-info text-center">
         <h4 class="alert-heading">Loading</h4>
@@ -22,14 +22,14 @@
     </div>
   </div>
   
-  <div class="row animated fadeIn fast">
+  <div class="row animated fadeIn fast" *ngIf="!loading">
     <div class="col-12">
       <div class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-8">
-              <h4 class="card-title">Hospitals</h4>
-              <h6 class="card-subtitle"><strong></strong> hospitals registered in the app</h6>
+              <h4 class="card-title">Doctors</h4>
+              <h6 class="card-subtitle"><strong></strong> doctors registered in the app</h6>
             </div>
             <div class="col">
               <div class="text-right">
@@ -50,16 +50,16 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let doctor of doctors">
                   <td>
                     <img 
-                      [alt]="'doctor.name'"
-                      [src]="'' | image:'hospitals'"
+                      [alt]="doctor.name"
+                      [src]="doctor.img | image:'doctors'"
                       class="avatar cursor"
                     >
                   </td>
                   <td>
-                    <input type="text" class="form-control" placeholder="Doctor name"/>
+                    <input type="text" class="form-control" placeholder="Doctor name" [(ngModel)]="doctor.name"/>
                   </td>
                   <td class="text-nowrap text-center">
                     <a data-toggle="tooltip" data-original-title="Update" class="cursor">
