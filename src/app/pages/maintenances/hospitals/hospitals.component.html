@@ -29,7 +29,7 @@
           <div class="row">
             <div class="col-8">
               <h4 class="card-title">Hospitals</h4>
-              <h6 class="card-subtitle"><strong>{{ hospitals.length}}</strong> hospitals registered in the app</h6>
+              <h6 class="card-subtitle"><strong>{{ totalHospitals }}</strong> hospitals registered in the app</h6>
             </div>
             <div class="col">
               <div class="text-right">
@@ -74,8 +74,8 @@
               </tbody>
             </table>
           </div>
-        <button class="btn btn-secondary">Prev</button>&nbsp;
-        <button class="btn btn-secondary">Next</button>
+          <button class="btn btn-secondary" (click)="changePage(-limit)">Prev</button>&nbsp;
+          <button class="btn btn-secondary"(click)="changePage(limit)">Next</button>
         </div>
       </div>
     </div>  

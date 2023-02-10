@@ -15,7 +15,10 @@ import { ModalImageService } from 'src/app/services/modal-image.service';
 export class HospitalsComponent implements OnInit {
 
   public hospitals: Hospital[] = []
+  public totalHospitals: number
   public loading: boolean = true
+  public from: number = 0;
+  public limit: number = 5;
   public imgSubscriber: Subscription
 
   constructor(
@@ -30,10 +33,11 @@ export class HospitalsComponent implements OnInit {
 
   getHospitals() {
     this.loading = true
-    this.hospitalService.getHospitals()
+    this.hospitalService.getHospitals(this.from, this.limit)
       .subscribe(hospitals => {
         this.loading = false
-        this.hospitals = hospitals
+        this.hospitals = hospitals.hospitals
+        this.totalHospitals = hospitals.totalHospitals
       })
   }
 
@@ -65,6 +69,15 @@ export class HospitalsComponent implements OnInit {
           this.hospitals.push(res.hospital)
       })
     }
+  }
+
+  changePage (value: number) {
+    this.from += value
+    if (this.from < 0)
+      this.from = 0
+    else if (this.from > this.totalHospitals)
+      this.from -= value
+    this.getHospitals()
   }
 
   openImgModal(hospital: Hospital) {

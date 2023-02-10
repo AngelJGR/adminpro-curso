@@ -25,9 +25,12 @@ export class HospitalService {
     }
   }
 
-  getHospitals (from: number = 0) {
-    return this.http.get(`${BASE_URL}/hospitals?from=${from}`, this.headers)
-      .pipe(map((r: {ok: boolean, hospitals: Hospital[]}) => r.hospitals))
+  getHospitals (from: number = 0, limit: number = 5) {
+    return this.http.get(`${BASE_URL}/hospitals?from=${from}&limit=${limit}`, this.headers)
+      .pipe(map((r: {ok: boolean, hospitals: Hospital[], totalHospitals: number}) => ({
+        hospitals: r.hospitals,
+        totalHospitals: r.totalHospitals
+      })))
   }
 
   createHospital (name: string) {
