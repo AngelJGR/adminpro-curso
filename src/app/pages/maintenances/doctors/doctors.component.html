@@ -56,10 +56,11 @@
                       [alt]="doctor.name"
                       [src]="doctor.img | image:'doctors'"
                       class="avatar cursor"
+                      (click)="openImgModal(doctor)"
                     >
                   </td>
                   <td>
-                    <input type="text" class="form-control" placeholder="Doctor name" [(ngModel)]="doctor.name"/>
+                    {{ doctor.name }}
                   </td>
                   <td class="text-nowrap text-center">
                     <a data-toggle="tooltip" data-original-title="Update" class="cursor">

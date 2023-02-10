@@ -17,6 +17,7 @@ export class DoctorsComponent implements OnInit {
 
   constructor(
     private doctorService: DoctorService,
+    private modalImageService: ModalImageService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +31,10 @@ export class DoctorsComponent implements OnInit {
         this.doctors = res.doctors
         this.loading = false;
       })
+  }
+
+  openImgModal(doctor: Doctor) {
+    this.modalImageService.openModal('doctors', doctor._id, doctor.img)
   }
 
 }
