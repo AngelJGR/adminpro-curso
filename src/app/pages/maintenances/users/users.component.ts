@@ -61,7 +61,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     if (!value)
       return this.getUser()
     this.searchesService.search('users', value)
-      .subscribe(res => this.users = res)
+      .subscribe((res: UserModel[]) => this.users = res)
   }
 
   changeRole(user: UserModel) {
