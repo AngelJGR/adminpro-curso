@@ -6,6 +6,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Grafica1Component } from './grafica1/grafica1.component';
+import { DoctorComponent } from './maintenances/doctors/doctor.component';
 import { DoctorsComponent } from './maintenances/doctors/doctors.component';
 import { HospitalsComponent } from './maintenances/hospitals/hospitals.component';
 import { UsersComponent } from './maintenances/users/users.component';
@@ -33,6 +34,7 @@ const routes: Routes = [
       { path: 'users', component: UsersComponent, data: { title: 'Application users' } },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Application hospitals' } },
       { path: 'doctors', component: DoctorsComponent, data: { title: 'Application doctors' } },
+      { path: 'doctors/:id', component: DoctorComponent, data: { title: 'Application doctors' } },
     ]
   },
 ];
