@@ -1,1 +1,82 @@
-<p>doctors works!</p>
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <input 
+            type="text"
+            class="form-control"
+            placeholder="Search doctor"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row animated fadeIn fast">
+    <div class="col-12">
+      <div class="alert alert-info text-center">
+        <h4 class="alert-heading">Loading</h4>
+        <i class="fa fa-spin fa-refresh fa-2x"></i>
+        <p class="ma-0">Please wait</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row animated fadeIn fast">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <h4 class="card-title">Hospitals</h4>
+              <h6 class="card-subtitle"><strong></strong> hospitals registered in the app</h6>
+            </div>
+            <div class="col">
+              <div class="text-right">
+                <button class="btn btn-primary">
+                  <i class="fa fa-hospital-o"></i> Create
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="w100">Image</th>
+                  <th>Name</th>
+                  <th class="text-nowrap w100">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <img 
+                      [alt]="'doctor.name'"
+                      [src]="'' | image:'hospitals'"
+                      class="avatar cursor"
+                    >
+                  </td>
+                  <td>
+                    <input type="text" class="form-control" placeholder="Doctor name"/>
+                  </td>
+                  <td class="text-nowrap text-center">
+                    <a data-toggle="tooltip" data-original-title="Update" class="cursor">
+                      <i class="fa fa-pencil text-inverse m-r-10"></i>
+                    </a>
+                    <a data-toggle="tooltip" data-original-title="Close" class="cursor">
+                      <i class="fa fa-close text-danger"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-secondary">Prev</button>&nbsp;
+          <button class="btn btn-secondary">Next</button>
+        </div>
+      </div>
+    </div>  
+  </div>
+  
