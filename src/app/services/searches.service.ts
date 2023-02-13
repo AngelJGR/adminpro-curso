@@ -37,6 +37,8 @@ export class SearchesService {
               return res.result.map(u => new User(u.name, u.email, '', u.google, u.img, u.uid, u.role))
             case 'hospitals':
               return res.result
+            case 'doctors':
+              return res.result
             default:
               return [];
           }

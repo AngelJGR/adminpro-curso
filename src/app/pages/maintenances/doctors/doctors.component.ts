@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Doctor } from 'src/app/models/doctor.model';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { ModalImageService } from 'src/app/services/modal-image.service';
+import { SearchesService } from 'src/app/services/searches.service';
 
 @Component({
   selector: 'app-doctors',
@@ -17,11 +18,19 @@ export class DoctorsComponent implements OnInit {
 
   constructor(
     private doctorService: DoctorService,
-    private modalImageService: ModalImageService
+    private modalImageService: ModalImageService,
+    private searchesService: SearchesService
   ) { }
 
   ngOnInit(): void {
     this.getDoctors()
+  }
+
+  search(value:string) {
+    if (!value)
+      return this.getDoctors()
+    this.searchesService.search('doctors', value)
+      .subscribe((res: Doctor[]) => this.doctors = res)
   }
 
   getDoctors() {
