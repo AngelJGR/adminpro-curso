@@ -35,9 +35,9 @@
             </div>
             <div class="col">
               <div class="text-right">
-                <button class="btn btn-primary">
+                <a class="btn btn-primary" routerLink="/dashboard/doctors/create">
                   <i class="fa fa-hospital-o"></i> Create
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@
                     <a data-toggle="tooltip" data-original-title="Update" class="cursor" [routerLink]="['/dashboard/doctors', doctor._id]">
                       <i class="fa fa-pencil text-inverse m-r-10"></i>
                     </a>
-                    <a data-toggle="tooltip" data-original-title="Close" class="cursor">
+                    <a data-toggle="tooltip" data-original-title="Close" class="cursor" (click)="deleteDoctor(doctor)">
                       <i class="fa fa-close text-danger"></i>
                     </a>
                   </td>
