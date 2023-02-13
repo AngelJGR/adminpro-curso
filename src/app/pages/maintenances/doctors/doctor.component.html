@@ -5,11 +5,11 @@
                 <h4 class="card-title">Create new Doctor</h4>
                 <h6 class="card-subtitle">Create new doctor information</h6>
                 <form class="form-horizontal p-t-20" [formGroup]="doctorForm" (submit)="saveDoctor()">
-                    <div class="form-group row">
+                    <div class="form-group row" *ngIf="selectedDoctor">
                         <label for="exampleInputuname3" class="col-sm-3 control-label">Photo</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <img src="http://localhost:3000/api/upload/users/no-image" class="avatar200 cursor">
+                                <img [src]="selectedDoctor.img | image:'doctors'" class="avatar200 cursor">
                             </div>
                         </div>
                     </div>

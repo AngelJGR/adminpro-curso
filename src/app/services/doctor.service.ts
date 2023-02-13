@@ -33,7 +33,7 @@ export class DoctorService {
       })))
   }
 
-  createDoctor(doctor: Doctor) {
+  createDoctor(doctor: {name: string, hospital: string}) {
     return this.http.post(`${BASE_URL}/doctors`, doctor, this.headers)
   }
 
