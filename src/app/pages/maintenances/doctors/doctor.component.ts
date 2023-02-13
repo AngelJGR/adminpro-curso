@@ -13,6 +13,7 @@ export class DoctorComponent implements OnInit {
 
   public doctorForm: FormGroup
   public hospitals: Hospital[] = []
+  public selectedHospital: Hospital = new Hospital()
 
   constructor(
     public fb: FormBuilder,
@@ -25,6 +26,9 @@ export class DoctorComponent implements OnInit {
       hospital: ['', Validators.required]
     })
     this.getHospitals()
+
+    this.doctorForm.get('hospital').valueChanges
+      .subscribe((hospitalId) => this.selectedHospital = this.hospitals.find(h => h._id === hospitalId))
   }
 
   saveDoctor(){
@@ -33,10 +37,7 @@ export class DoctorComponent implements OnInit {
 
   getHospitals() {
     this.hospitalService.getHospitals()
-      .subscribe(res => {
-        console.log(res)
-        this.hospitals = res.hospitals
-      } )
+      .subscribe(res => this.hospitals = res.hospitals)
   }
 
 }
