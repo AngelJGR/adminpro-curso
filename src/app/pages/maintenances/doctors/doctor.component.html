@@ -9,7 +9,7 @@
                         <label for="exampleInputuname3" class="col-sm-3 control-label">Photo</label>
                         <div class="col-sm-9">
                             <div class="input-group">
-                                <img [src]="selectedDoctor.img | image:'doctors'" class="avatar200 cursor">
+                                <img [src]="selectedDoctor?.img | image:'doctors'" class="avatar200 cursor">
                             </div>
                         </div>
                     </div>
@@ -62,9 +62,9 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title">Hospital</div>
-                <div class="card-subtitle">{{selectedHospital.name}}</div>
+                <div class="card-subtitle">{{selectedHospital?.name}}</div>
                 <img 
-                    [src]="selectedHospital.img | image:'hospitals'" 
+                    [src]="selectedHospital?.img | image:'hospitals'" 
                     class="avatar200 cursor">
             </div>
         </div>

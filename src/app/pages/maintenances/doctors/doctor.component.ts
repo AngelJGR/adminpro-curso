@@ -7,6 +7,7 @@ import { Doctor } from 'src/app/models/doctor.model';
 import { Hospital } from 'src/app/models/hospital.model';
 import { DoctorService } from 'src/app/services/doctor.service';
 import { HospitalService } from 'src/app/services/hospital.service';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-doctor',
@@ -30,7 +31,7 @@ export class DoctorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe( ({id}) => this.getDoctorById(id) )
+    this.activatedRoute.params.subscribe(({id}) => this.getDoctorById(id))
     this.doctorForm = this.fb.group({
       name: ['', Validators.required],
       hospital: ['', Validators.required]
@@ -38,6 +39,7 @@ export class DoctorComponent implements OnInit {
     this.getHospitals()
 
     this.doctorForm.get('hospital').valueChanges
+      .pipe(delay(100))
       .subscribe((hospitalId) => this.selectedHospital = this.hospitals.find(h => h._id === hospitalId))
   }
 
