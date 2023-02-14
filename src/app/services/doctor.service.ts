@@ -33,6 +33,13 @@ export class DoctorService {
       })))
   }
 
+  getDoctorById (uid: string) {
+    return this.http.get(`${BASE_URL}/doctors/${uid}`, this.headers)
+      .pipe(map((r: {ok: boolean, doctor: Doctor}) => ({
+        doctor: r.doctor,
+      })))
+  }
+
   createDoctor(doctor: {name: string, hospital: string}) {
     return this.http.post(`${BASE_URL}/doctors`, doctor, this.headers)
   }
