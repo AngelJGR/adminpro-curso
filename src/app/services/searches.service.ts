@@ -45,4 +45,8 @@ export class SearchesService {
         })
       )
   }
+
+  globalSearch(text: string) {
+    return this.http.get(`${BASE_URL}/search/${text}`, this.headers)
+  }
 }
