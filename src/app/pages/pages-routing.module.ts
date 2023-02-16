@@ -15,6 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ProgressComponent } from './progress/progress.component';
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   { 
@@ -27,6 +28,7 @@ const routes: Routes = [
       { path: 'grafica1', component: Grafica1Component, data: { title: 'Gráfica #1' } },
       { path: 'account-settings', component: AccountSettingsComponent, data: { title: 'Theme configuration' } },
       { path: 'promises', component: PromisesComponent, data: { title: 'Promises' } },
+      { path: 'search/:text', component: SearchComponent, data: { title: 'Search' } },
       { path: 'rxjs', component: RxjsComponent, data: { title: 'RxJs' } },
       { path: 'profile', component: ProfileComponent, data: { title: 'Profile User' } },
 
