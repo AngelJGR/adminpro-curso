@@ -46,6 +46,11 @@ export class UserService {
     }
   }
 
+  saveLocalStorage(res) {
+    localStorage.setItem('token', res.token);
+    localStorage.setItem('menu', JSON.stringify(res.menu))
+  }
+
   googleInit(): Promise<void> {
     return new Promise(resolve => {
       gapi.load('auth2', () => {
@@ -64,7 +69,7 @@ export class UserService {
       map((res: any) => {
         const { email, google, name, role, uid, img = '' } = res.user;
         this.user = new User(name, email, '', google, img, uid, role);
-        localStorage.setItem('token', res.token);
+        this.saveLocalStorage(res)
         return true;
       }),
       catchError(() => of(false))
@@ -74,7 +79,7 @@ export class UserService {
   createUser(formData: RegisterFormInterface) {
     return this.http.post(`${BASE_URL}/users`, formData)
       .pipe(
-        tap((res: any) => localStorage.setItem('token', res.token))
+        tap((res: any) => this.saveLocalStorage(res))
       );
   }
 
@@ -89,19 +94,20 @@ export class UserService {
   login(formData: LoginFormInterface) {
     return this.http.post(`${BASE_URL}/login`, formData)
       .pipe(
-        tap((res: any) => localStorage.setItem('token', res.token))
+        tap((res: any) => this.saveLocalStorage(res))
       );
   }
 
   loginGoogle(token: string) {
     return this.http.post(`${BASE_URL}/login/google`, { token })
       .pipe(
-        tap((res: any) => localStorage.setItem('token', res.token))
+        tap((res: any) => this.saveLocalStorage(res))
       );
   }
 
   logout () {
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
     this.auth2.signOut().then(() => {
       this.ngZone.run(() => {
         this.router.navigateByUrl('/login');
