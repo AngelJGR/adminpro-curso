@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from '../guards/admin.guard';
 
 import { AuthGuard } from '../guards/auth.guard';
 
@@ -33,10 +34,12 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent, data: { title: 'Profile User' } },
 
       //Maintenances
-      { path: 'users', component: UsersComponent, data: { title: 'Application users' } },
       { path: 'hospitals', component: HospitalsComponent, data: { title: 'Application hospitals' } },
       { path: 'doctors', component: DoctorsComponent, data: { title: 'Application doctors' } },
       { path: 'doctors/:id', component: DoctorComponent, data: { title: 'Application doctors' } },
+
+      //Admin routes
+      { path: 'users', canActivate: [ AdminGuard ], component: UsersComponent, data: { title: 'Application users' } },
     ]
   },
 ];
