@@ -10,7 +10,7 @@ export class User {
     public google?: boolean,
     public img?: string,
     public uid? :string,
-    public role?: string,
+    public role?: 'ADMIN_ROLE' | 'USER_ROLE',
   ) {}
 
   get imageUrl(): string {
